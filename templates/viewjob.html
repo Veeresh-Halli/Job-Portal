@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid">
+  <section>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <span class="navbar-brand mb-0 h1">Job Portal</span>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <h1>job Seeker View Job Page</h1>
+    <section class="col-md-8 mx-auto">
+      <div class="row col-md-10">
+        <div class="card card-body">
+          <p><b>Title :</b> {{job_details.title}}</p>
+          <p><b>Description :</b> {{job_details.description}}</p>
+          <p><b>Salary :</b> {{job_details.salary}}</p>
+          <p><b>Location :</b> {{job_details.location}}</p>
+          <p><b>Experience :</b> {{job_details.experience}}</p>
+          <p><b>Created By :</b> {{job_details.employer}}</p>
+          <form method="post" action="{% url 'apply-job' job_details.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" accept="application/pdf" name="resume"/>
+            <button type="submit">Apply Job</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid">
+  <section>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <span class="navbar-brand mb-0 h1">Job Portal</span>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <h1>job Seeker page</h1>
+    <section>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3 col-md-8 mx-auto">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputPassword1"
+            name="search"
+            placeholder="Search...."
+          />
+          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        </div>
+      </form>
+    </section>
+    <div>{% for message in messages %} {{message}} {% endfor %}</div>
+    <section class="col-md-8 mx-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sl.no</th>
+            <th scope="col">Title</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for listing in job_listings %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>
+              <a href="{% url 'view-job' listing.id %}">{{listing.title}}</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div>
+        <a href="{% url 'applied-jobs' %}">Applied Jobs</a>
+      </div>
+    </section>
+  </section>
+</div>
+{% endblock %}

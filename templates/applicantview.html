@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div class="container-fluid">
+  <section>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <span class="navbar-brand mb-0 h1">Job Portal</span>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <h1>Applied Job Page</h1>
+    <section class="col-md-8 mx-auto">
+      <div class="row col-md-10">
+        {% for applicant in job_applicants %}
+        <div class="card card-body mt-2">
+          <p><b>Job Title :</b> {{applicant.job.title}}</p>
+          <p><b>Applicant Name :</b> {{applicant.job_seeker.username}}</p>
+          <p>
+            <b>Applicant Resume :</b>
+            <a href="{{applicant.file.url}}">Download Resume</a>
+          </p>
+          <section>
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="mb-3 col-md-8">
+                <input name="job_seeker" value="{{applicant.job_seeker.id}}" style="display:none">
+                <label for="statuss"><b>Application Status:</b></label>
+                <select name="status" id="statuss">
+                  <option value="rejected">Reject</option>
+                  <option value="accepted">Approve</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </section>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </section>
+</div>
+{% endblock %}

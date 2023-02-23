@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid">
+  <section>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <span class="navbar-brand mb-0 h1">Job Portal</span>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+  <h1 class="container mt-5 col-md-6">job Details page</h1>
+  <section class="container mt-5 col-md-6">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="title"
+          value="{{job_details.title}}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          name="description"
+          value="{{job_details.description}}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Location</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="location"
+          value="{{job_details.location}}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Salary</label>
+        <input
+          type="number"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="salary"
+          value="{{job_details.salary}}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">experience</label>
+        <input
+          type="number"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="experience"
+          value="{{job_details.experience}}"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

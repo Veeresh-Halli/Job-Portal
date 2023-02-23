@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid">
+  <section>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <span class="navbar-brand mb-0 h1">Job Portal</span>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <h1>Applied Job Page</h1>
+    <section class="col-md-8 mx-auto">
+      <div class="row col-md-10">
+        {% for jobs in applied_jobs %}
+        <div class="card card-body mt-2">
+          <p><b>Title :</b> {{jobs.job.title}}</p>
+          <p><b>Description :</b> {{jobs.job.description}}</p>
+          <p><b>Salary :</b> {{jobs.job.salary}}</p>
+          <p><b>Location :</b> {{jobs.job.location}}</p>
+          <p><b>Experience :</b> {{jobs.job.experience}}</p>
+          <p><b>Created By :</b> {{jobs.job.employer}}</p>
+          <p><b>Status :</b> {{jobs.status}}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </section>
+</div>
+{% endblock %}
